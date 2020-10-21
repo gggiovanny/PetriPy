@@ -12,7 +12,7 @@ setup(
     # Provide either the link to your github or to your website
     url='https://github.com/gggiovanny/PetriPy',
     # I explain this later on
-    download_url='https://github.com/user/reponame/archive/v_01.tar.gz',
+    download_url='https://github.com/gggiovanny/PetriPy/archive/v0.1.tar.gz',
     # Keywords that define your package best
     keywords=['PETRI', 'NETWORK', 'TEMPORIZED'],
     install_requires=[            # I get to this in a second
@@ -29,4 +29,4 @@ setup(
         'Programming Language :: Python :: 3.8',
     ],
 )
-in
+# Credits: https://medium.com/@joel.barmettler/how-to-upload-your-python-package-to-pypi-65edc5fe9c56
