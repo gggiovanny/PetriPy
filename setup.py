@@ -7,6 +7,8 @@ setup(
     license='MIT',
     # Give a short description about your library
     description='Create timed Petri nets in a simple way through place and transition nodes that execute actions defined by you.',
+    long_description="""Create timed Petri nets in a simple way through place and transition nodes that execute actions defined by you.""",
+    long_description_content_type='text/markdown',
     author='Giovanny González Baltazar',                   # Type in your name
     author_email='giovanny.gonzalez.19@gmail.com',      # Type in your E-Mail
     # Provide either the link to your github or to your website
