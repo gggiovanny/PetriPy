@@ -78,7 +78,7 @@ class Network:
                         all_conditions_marked = False #! TODO: hacer que se puedan configurar multiples marcas
             if all_conditions_marked: #? Cuando se cumplen todas las condiciones para la transicion...
                 if transition.time_waited == transition.wait_time: #? ... ver que se halla esperado el tiempo de espera de la transicion
-                    print("(t={}) ".format(self.global_time), end='')
+                    print("(t={}, w={}) ".format(self.global_time, transition.time_waited), end='')
                     transition.runAction()
                     transition.time_waited = 0
                     #? Quitando las marcas de las precondiciones
