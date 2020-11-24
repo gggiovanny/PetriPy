@@ -48,13 +48,15 @@ class Place(Node):
         print("{}[{}]".format(self.getName(), self.marks),'-> ', end='')
 
 class Network:
-    def __init__(self, places_list, transitions_list, initial_state_list = [], max_width = False):
+    def __init__(self, places_list, transitions_list, initial_state_list = [], max_width = False, name = "", active = False):
         self.places = places_list
         self.transitions = transitions_list
         self.configurePreconditions()
         self.setInitialState(initial_state_list)
         self.global_time = 0
         self.max_width = max_width # "ancho" de la red. Se refiere a el numero de elementos (lugares y transiciones) unicos que se pueden recorrer antes de repetirse
+        self.name = name
+        self.active = active
     def setInitialState(self, initial_state_list):
         if initial_state_list:
             if len(initial_state_list) == len(self.places):
