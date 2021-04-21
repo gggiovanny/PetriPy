@@ -43,17 +43,20 @@ class Place(Node):
     def __init__(self, id):
         Node.__init__(self, 'places', id)
         self.marks = 0
+        self.required_marks = 1
     def print(self):
         print("{}[{}]".format(self.getName(), self.marks),'-> ', end='')
 
 class Network:
-    def __init__(self, places_list, transitions_list, initial_state_list = [], max_width = False):
+    def __init__(self, places_list, transitions_list, initial_state_list = [], max_width = False, name = "", active = False):
         self.places = places_list
         self.transitions = transitions_list
         self.configurePreconditions()
         self.setInitialState(initial_state_list)
         self.global_time = 0
         self.max_width = max_width # "ancho" de la red. Se refiere a el numero de elementos (lugares y transiciones) unicos que se pueden recorrer antes de repetirse
+        self.name = name
+        self.active = active
     def setInitialState(self, initial_state_list):
         if initial_state_list:
             if len(initial_state_list) == len(self.places):
@@ -66,7 +69,9 @@ class Network:
             for place in self.places:
                 if transition in place.nextNodes:
                     transition.preconditions.append(place)
-    def nextStep(self):
+    def nextStep(self, actual_time = 0):
+        if actual_time:
+            self.global_time = actual_time
         self.global_time += 1
         for transition in self.transitions: #? Por cada transicion ...
             all_conditions_marked = True
@@ -74,7 +79,7 @@ class Network:
             if transition.time_waited == 0: #? ... solo si no se esta en estado de espera de una transicion que ya cumplió sus precondiciones previamente
                 #? Recorriendo todos Place para verficar que se cumplan las marcas (se puede hacer esto porque python asigna objetos por referencia)
                 for precondition in transition.preconditions:
-                    if precondition.marks == 0:
+                    if precondition.marks < precondition.required_marks:
                         all_conditions_marked = False #! TODO: hacer que se puedan configurar multiples marcas
             if all_conditions_marked: #? Cuando se cumplen todas las condiciones para la transicion...
                 if transition.time_waited == transition.wait_time: #? ... ver que se halla esperado el tiempo de espera de la transicion
@@ -86,7 +91,7 @@ class Network:
                         pre.marks = 0
                     #? y poniendoselas a los Place() siguientes
                     for pos in transition.nextNodes:
-                        pos.marks = 1
+                        pos.marks += 1
                 else:
                     transition.time_waited += 1
     def fastForward(self, number_of_steps):
