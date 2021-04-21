@@ -2,7 +2,7 @@ from distutils.core import setup
 setup(
     name='PetriPy',         # How you named your package folder (MyLib)
     packages=['PetriPy'],   # Chose the same as "name"
-    version='0.1',      # Start with a small number and increase it with every change you make
+    version='0.3',      # Start with a small number and increase it with every change you make
     # Chose a license from here: https://help.github.com/articles/licensing-a-repository
     license='MIT',
     # Give a short description about your library
@@ -14,7 +14,7 @@ setup(
     # Provide either the link to your github or to your website
     url='https://github.com/gggiovanny/PetriPy',
     # I explain this later on
-    download_url='https://github.com/gggiovanny/PetriPy/archive/v0.1.tar.gz',
+    download_url='https://github.com/gggiovanny/PetriPy/archive/refs/tags/v0.3.tar.gz',
     # Keywords that define your package best
     keywords=['PETRI', 'NETWORK', 'TEMPORIZED'],
     install_requires=[            # I get to this in a second
